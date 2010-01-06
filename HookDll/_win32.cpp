@@ -10,8 +10,8 @@
 ///////////////////////////////////////////////////////////////// Trampolines.
 //
 
-#include "stdafx.h"
-#include "stdio.h"
+
+#include "_win32.h"
 /*
 int (__stdcall * Real_AbortDoc)(HDC a0)
     = AbortDoc;
@@ -35063,11 +35063,11 @@ LONG AttachDetours(VOID)
     ATTACH(&(PVOID&)Real_TranslateCharsetInfo, Mine_TranslateCharsetInfo);
     ATTACH(&(PVOID&)Real_TranslateMDISysAccel, Mine_TranslateMDISysAccel);
     ATTACH(&(PVOID&)Real_TranslateMessage, Mine_TranslateMessage);
-    ATTACH(&(PVOID&)Real_TransmitCommChar, Mine_TransmitCommChar);
+    ATTACH(&(PVOID&)Real_TransmitCommChar, Mine_TransmitCommChar);*/
 #if DETOUR_TryEnterCriticalSection_EVEN_IF_IT_EXERCISES_A_BUG_IN_RtlLookupFunctionTable
     ATTACH(&(PVOID&)Real_TryEnterCriticalSection, Mine_TryEnterCriticalSection);
 #endif
-    ATTACH(&(PVOID&)Real_UnhookWindowsHook, Mine_UnhookWindowsHook);
+    /*ATTACH(&(PVOID&)Real_UnhookWindowsHook, Mine_UnhookWindowsHook);
     ATTACH(&(PVOID&)Real_UnhookWindowsHookEx, Mine_UnhookWindowsHookEx);
     ATTACH(&(PVOID&)Real_UnionRect, Mine_UnionRect);
     ATTACH(&(PVOID&)Real_UnloadKeyboardLayout, Mine_UnloadKeyboardLayout);
@@ -36744,11 +36744,11 @@ LONG DetachDetours(VOID)
     DETACH(&(PVOID&)Real_TranslateCharsetInfo, Mine_TranslateCharsetInfo);
     DETACH(&(PVOID&)Real_TranslateMDISysAccel, Mine_TranslateMDISysAccel);
     DETACH(&(PVOID&)Real_TranslateMessage, Mine_TranslateMessage);
-    DETACH(&(PVOID&)Real_TransmitCommChar, Mine_TransmitCommChar);
+    DETACH(&(PVOID&)Real_TransmitCommChar, Mine_TransmitCommChar);*/
 #if DETOUR_TryEnterCriticalSection_EVEN_IF_IT_EXERCISES_A_BUG_IN_RtlLookupFunctionTable
     DETACH(&(PVOID&)Real_TryEnterCriticalSection, Mine_TryEnterCriticalSection);
 #endif
-    DETACH(&(PVOID&)Real_UnhookWindowsHook, Mine_UnhookWindowsHook);
+    /*DETACH(&(PVOID&)Real_UnhookWindowsHook, Mine_UnhookWindowsHook);
     DETACH(&(PVOID&)Real_UnhookWindowsHookEx, Mine_UnhookWindowsHookEx);
     DETACH(&(PVOID&)Real_UnionRect, Mine_UnionRect);
     DETACH(&(PVOID&)Real_UnloadKeyboardLayout, Mine_UnloadKeyboardLayout);
