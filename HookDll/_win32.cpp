@@ -11,6 +11,7 @@
 //
 
 #include "stdafx.h"
+#include "stdio.h"
 /*
 int (__stdcall * Real_AbortDoc)(HDC a0)
     = AbortDoc;
@@ -3354,10 +3355,10 @@ UINT (__stdcall * Real_GetEnhMetaFilePixelFormat)(HENHMETAFILE a0,
 
 HENHMETAFILE (__stdcall * Real_GetEnhMetaFileW)(LPCWSTR a0)
     = GetEnhMetaFileW;
-
+*/
 LPSTR (__stdcall * Real_GetEnvironmentStrings)(void)
     = GetEnvironmentStrings;
-
+/*
 LPWSTR (__stdcall * Real_GetEnvironmentStringsW)(void)
     = GetEnvironmentStringsW;
 
@@ -3686,12 +3687,12 @@ DWORD (__stdcall * Real_GetModuleFileNameA)(HMODULE a0,
                                             LPSTR a1,
                                             DWORD a2)
     = GetModuleFileNameA;
-
+*/
 DWORD (__stdcall * Real_GetModuleFileNameW)(HMODULE a0,
                                             LPWSTR a1,
                                             DWORD a2)
     = GetModuleFileNameW;
-
+/*
 HMODULE (__stdcall * Real_GetModuleHandleA)(LPCSTR a0)
     = GetModuleHandleA;
 
@@ -18255,7 +18256,7 @@ HENHMETAFILE __stdcall Mine_GetEnhMetaFileW(LPCWSTR a0)
     };
     return rv;
 }
-
+*/
 LPSTR __stdcall Mine_GetEnvironmentStrings(void)
 {
     _PrintEnter("GetEnvironmentStrings()\n");
@@ -18268,7 +18269,7 @@ LPSTR __stdcall Mine_GetEnvironmentStrings(void)
     };
     return rv;
 }
-
+/*
 LPWSTR __stdcall Mine_GetEnvironmentStringsW(void)
 {
     _PrintEnter("GetEnvironmentStringsW()\n");
@@ -19345,7 +19346,7 @@ DWORD __stdcall Mine_GetModuleFileNameA(HMODULE a0,
     };
     return rv;
 }
-
+*/
 DWORD __stdcall Mine_GetModuleFileNameW(HMODULE a0,
                                         LPWSTR a1,
                                         DWORD a2)
@@ -19360,7 +19361,7 @@ DWORD __stdcall Mine_GetModuleFileNameW(HMODULE a0,
     };
     return rv;
 }
-
+/*
 HMODULE __stdcall Mine_GetModuleHandleA(LPCSTR a0)
 {
     _PrintEnter("GetModuleHandleA(%hs)\n", a0);
@@ -33564,7 +33565,7 @@ VOID DetAttach(PVOID *ppvReal, PVOID pvMine, PCHAR psz)
     LONG l = DetourAttach(ppvReal, pvMine);
     if (l != 0) {
         //Syelog(//Syelog_SEVERITY_NOTICE,
-               "Attach failed: `%s': error %d\n", DetRealName(psz), l);
+//               "Attach failed: `%s': error %d\n", DetRealName(psz), l);
 
         Decode((PBYTE)*ppvReal, 3);
     }
@@ -34231,9 +34232,9 @@ LONG AttachDetours(VOID)
     ATTACH(&(PVOID&)Real_GetEnhMetaFileHeader, Mine_GetEnhMetaFileHeader);
     ATTACH(&(PVOID&)Real_GetEnhMetaFilePaletteEntries, Mine_GetEnhMetaFilePaletteEntries);
     ATTACH(&(PVOID&)Real_GetEnhMetaFilePixelFormat, Mine_GetEnhMetaFilePixelFormat);
-    ATTACH(&(PVOID&)Real_GetEnhMetaFileW, Mine_GetEnhMetaFileW);
+    ATTACH(&(PVOID&)Real_GetEnhMetaFileW, Mine_GetEnhMetaFileW);*/
     ATTACH(&(PVOID&)Real_GetEnvironmentStrings, Mine_GetEnvironmentStrings);
-    ATTACH(&(PVOID&)Real_GetEnvironmentStringsW, Mine_GetEnvironmentStringsW);
+    /*ATTACH(&(PVOID&)Real_GetEnvironmentStringsW, Mine_GetEnvironmentStringsW);
     ATTACH(&(PVOID&)Real_GetEnvironmentVariableA, Mine_GetEnvironmentVariableA);
     ATTACH(&(PVOID&)Real_GetEnvironmentVariableW, Mine_GetEnvironmentVariableW);
     ATTACH(&(PVOID&)Real_GetExitCodeProcess, Mine_GetExitCodeProcess);
@@ -34307,9 +34308,9 @@ LONG AttachDetours(VOID)
     ATTACH(&(PVOID&)Real_GetMetaFileW, Mine_GetMetaFileW);
     ATTACH(&(PVOID&)Real_GetMetaRgn, Mine_GetMetaRgn);
     ATTACH(&(PVOID&)Real_GetMiterLimit, Mine_GetMiterLimit);
-    ATTACH(&(PVOID&)Real_GetModuleFileNameA, Mine_GetModuleFileNameA);
+    ATTACH(&(PVOID&)Real_GetModuleFileNameA, Mine_GetModuleFileNameA);*/
     ATTACH(&(PVOID&)Real_GetModuleFileNameW, Mine_GetModuleFileNameW);
-    ATTACH(&(PVOID&)Real_GetModuleHandleA, Mine_GetModuleHandleA);
+    /*ATTACH(&(PVOID&)Real_GetModuleHandleA, Mine_GetModuleHandleA);
     ATTACH(&(PVOID&)Real_GetModuleHandleW, Mine_GetModuleHandleW);
     ATTACH(&(PVOID&)Real_GetNamedPipeHandleStateA, Mine_GetNamedPipeHandleStateA);
     ATTACH(&(PVOID&)Real_GetNamedPipeHandleStateW, Mine_GetNamedPipeHandleStateW);
@@ -35912,9 +35913,9 @@ LONG DetachDetours(VOID)
     DETACH(&(PVOID&)Real_GetEnhMetaFileHeader, Mine_GetEnhMetaFileHeader);
     DETACH(&(PVOID&)Real_GetEnhMetaFilePaletteEntries, Mine_GetEnhMetaFilePaletteEntries);
     DETACH(&(PVOID&)Real_GetEnhMetaFilePixelFormat, Mine_GetEnhMetaFilePixelFormat);
-    DETACH(&(PVOID&)Real_GetEnhMetaFileW, Mine_GetEnhMetaFileW);
+    DETACH(&(PVOID&)Real_GetEnhMetaFileW, Mine_GetEnhMetaFileW);*/
     DETACH(&(PVOID&)Real_GetEnvironmentStrings, Mine_GetEnvironmentStrings);
-    DETACH(&(PVOID&)Real_GetEnvironmentStringsW, Mine_GetEnvironmentStringsW);
+    /*DETACH(&(PVOID&)Real_GetEnvironmentStringsW, Mine_GetEnvironmentStringsW);
     DETACH(&(PVOID&)Real_GetEnvironmentVariableA, Mine_GetEnvironmentVariableA);
     DETACH(&(PVOID&)Real_GetEnvironmentVariableW, Mine_GetEnvironmentVariableW);
     DETACH(&(PVOID&)Real_GetExitCodeProcess, Mine_GetExitCodeProcess);
@@ -35988,9 +35989,9 @@ LONG DetachDetours(VOID)
     DETACH(&(PVOID&)Real_GetMetaFileW, Mine_GetMetaFileW);
     DETACH(&(PVOID&)Real_GetMetaRgn, Mine_GetMetaRgn);
     DETACH(&(PVOID&)Real_GetMiterLimit, Mine_GetMiterLimit);
-    DETACH(&(PVOID&)Real_GetModuleFileNameA, Mine_GetModuleFileNameA);
+    DETACH(&(PVOID&)Real_GetModuleFileNameA, Mine_GetModuleFileNameA);*/
     DETACH(&(PVOID&)Real_GetModuleFileNameW, Mine_GetModuleFileNameW);
-    DETACH(&(PVOID&)Real_GetModuleHandleA, Mine_GetModuleHandleA);
+    /*DETACH(&(PVOID&)Real_GetModuleHandleA, Mine_GetModuleHandleA);
     DETACH(&(PVOID&)Real_GetModuleHandleW, Mine_GetModuleHandleW);
     DETACH(&(PVOID&)Real_GetNamedPipeHandleStateA, Mine_GetNamedPipeHandleStateA);
     DETACH(&(PVOID&)Real_GetNamedPipeHandleStateW, Mine_GetNamedPipeHandleStateW);
